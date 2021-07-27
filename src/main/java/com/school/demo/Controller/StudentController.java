@@ -9,6 +9,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path="/student")
 public class StudentController {
+
     private final StudentService studentService;
 
     public StudentController(StudentService studentService){
@@ -22,7 +23,7 @@ public class StudentController {
 
     @GetMapping
     @ResponseBody
-    public List<Student> student(){
+    public List<Student> getStudents(){
         return this.studentService.getStudents();
     }
 }
