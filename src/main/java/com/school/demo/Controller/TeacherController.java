@@ -17,12 +17,12 @@ public class TeacherController {
     }
 
     @PostMapping
-    public Teacher createTeacher(@RequestBody Teacher createTeacher){
-        return this.teacherService.createTeacher(createTeacher);
+    public Teacher createEmployee(@RequestBody Teacher teacher){
+        return this.teacherService.createTeacher(teacher);
     }
 
     @GetMapping
-    public List<Teacher> getTeachers(){
+    public List<Teacher> getEmployees(){
         return this.teacherService.getTeachers();
     }
 

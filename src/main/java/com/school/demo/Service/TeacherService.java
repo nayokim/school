@@ -12,7 +12,7 @@ public class TeacherService {
     private final TeacherRepository teacherRepository;
 
     @Autowired
-    public TeacherService (TeacherRepository teacherRepository){
+    public TeacherService(TeacherRepository teacherRepository){
         this.teacherRepository = teacherRepository;
     }
 

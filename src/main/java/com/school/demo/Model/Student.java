@@ -10,48 +10,53 @@ public class Student {
     private int id;
 
     @Column
-    private String name;
+    private String firstName;
+
+    @Column
+    private String lastName;
 
     @Column
     private int grade;
 
-    public Student(){
+    public Student() {
 
     }
 
-    public Student(int id, String name, int grade){
-        this.id=id;
-        this.name=name;
-        this.grade=grade;
+    public Student(String firstName, String lastName, int grade) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = grade;
     }
 
-    public Student(String name, int grade){
-        this.name=name;
-        this.grade=grade;
+    public int getId() {
+        return id;
     }
 
-    public Integer getId(){
-        return this.id;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setId(int id){
-        this.id=id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getName(){
-        return this.name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setName(String name){
-        this.name=name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public Integer getGrade() {
-        return this.grade;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setGrade(int grade){
-        this.grade=grade;
+    public int getGrade() {
+        return grade;
     }
 
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
 }
