@@ -1,6 +1,7 @@
 package com.school.demo.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="students")
@@ -17,6 +18,20 @@ public class Student {
 
     @Column
     private int grade;
+
+    /**
+     * student can have many classes
+     * classes can have many students
+     * create: join table to create student_lecture
+     */
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="students_lectures",
+            joinColumns={@JoinColumn(name="student_id", referencedColumnName = "id")},
+            inverseJoinColumns={@JoinColumn(name="lecture_id", referencedColumnName = "id")}
+    )
+    private List<Lecture> lectures;
 
     public Student() {
 

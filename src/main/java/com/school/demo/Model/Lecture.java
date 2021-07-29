@@ -1,6 +1,7 @@
 package com.school.demo.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="lectures")
@@ -23,6 +24,8 @@ public class Lecture {
     @JoinColumn(name="teacher_id")
     private Teacher teacher;
 
+    @ManyToMany(mappedBy="lectures")
+    private List<Student> students;
 
     public Lecture() {
     }
