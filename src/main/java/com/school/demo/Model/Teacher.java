@@ -8,7 +8,7 @@ import java.util.List;
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column
     private String firstName;
@@ -19,40 +19,28 @@ public class Teacher {
     @Column
     private String title;
 
-    @Column
-    private String subjectTaught;
-
-    @Column
-    private int level;
-
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
-    private List<Lecture> lectures;
 
     public Teacher() {
     }
 
-    public Teacher(int id, String firstName, String lastName, String title, String subjectTaught, int level) {
+    public Teacher(long id, String firstName, String lastName, String title, String subjectTaught, int level) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
-        this.subjectTaught = subjectTaught;
-        this.level = level;
     }
 
-    public Teacher(String firstName, String lastName, String title, String subjectTaught, int level) {
+    public Teacher(String firstName, String lastName, String title) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
-        this.subjectTaught = subjectTaught;
-        this.level = level;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -80,20 +68,5 @@ public class Teacher {
         this.title = title;
     }
 
-    public String getSubjectTaught() {
-        return subjectTaught;
-    }
-
-    public void setSubjectTaught(String subjectTaught) {
-        this.subjectTaught = subjectTaught;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
 }
 

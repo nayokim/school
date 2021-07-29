@@ -1,6 +1,7 @@
 package com.school.demo.Controller;
 
 import com.school.demo.Model.Lecture;
+import com.school.demo.Model.Student;
 import com.school.demo.Model.Teacher;
 import com.school.demo.Service.LectureService;
 import com.school.demo.Service.TeacherService;
@@ -24,7 +25,8 @@ public class LectureController {
     }
 
     @GetMapping
-    public List<Lecture> getEmployees(){
+    public List<Lecture> getLecture(){
         return this.lectureService.getLectures();
     }
+
 }

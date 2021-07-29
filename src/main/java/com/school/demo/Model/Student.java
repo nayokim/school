@@ -1,5 +1,8 @@
 package com.school.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,7 +11,7 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column
     private String firstName;
@@ -25,29 +28,34 @@ public class Student {
      * create: join table to create student_lecture
      */
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="students_lectures",
-            joinColumns={@JoinColumn(name="student_id", referencedColumnName = "id")},
-            inverseJoinColumns={@JoinColumn(name="lecture_id", referencedColumnName = "id")}
-    )
-    private List<Lecture> lectures;
+    @JsonIgnore
+    @ManyToMany(mappedBy="students")
+    private List <Lecture> lectures;
 
     public Student() {
 
     }
 
-    public Student(String firstName, String lastName, int grade) {
+    public Student(long id, String firstName, String lastName, int grade, List<Lecture> lectures) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
+        this.lectures = lectures;
     }
 
-    public int getId() {
+    public Student(String firstName, String lastName, int grade, List<Lecture> lectures) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = grade;
+        this.lectures = lectures;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -73,5 +81,13 @@ public class Student {
 
     public void setGrade(int grade) {
         this.grade = grade;
+    }
+
+    public List<Lecture> getLectures() {
+        return lectures;
+    }
+
+    public void setLectures(List<Lecture> lectures) {
+        this.lectures = lectures;
     }
 }

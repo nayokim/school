@@ -22,7 +22,6 @@ public class StudentController {
     }
 
     @GetMapping
-    @ResponseBody
     public List<Student> getStudents(){
         return this.studentService.getStudents();
     }

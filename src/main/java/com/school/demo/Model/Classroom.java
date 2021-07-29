@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column
     private int capacity;
@@ -21,7 +21,7 @@ public class Classroom {
     public Classroom() {
     }
 
-    public Classroom(int id, int capacity, String roomType, String facilities) {
+    public Classroom(long id, int capacity, String roomType, String facilities) {
         this.id = id;
         this.capacity = capacity;
         this.roomType = roomType;
@@ -34,7 +34,7 @@ public class Classroom {
         this.facilities = facilities;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

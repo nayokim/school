@@ -1,5 +1,8 @@
 package com.school.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +12,7 @@ public class Lecture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column
     private String name;
@@ -20,35 +23,40 @@ public class Lecture {
     @Column
     private int maxCapacity;
 
-    @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name="teacher_id")
-    private Teacher teacher;
 
-    @ManyToMany(mappedBy="lectures")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name="lectures_students",
+            joinColumns=@JoinColumn(name="lecture_id"),
+            inverseJoinColumns=@JoinColumn(name="student_id")
+    )
     private List<Student> students;
+
 
     public Lecture() {
     }
 
-    public Lecture(int id, String name, String time, int maxCapacity) {
+    public Lecture(long id, String name, String time, int maxCapacity, List<Student> students) {
         this.id = id;
         this.name = name;
         this.time = time;
         this.maxCapacity = maxCapacity;
+        this.students = students;
     }
 
-    public Lecture(String name, String time, int maxCapacity, Teacher teacher) {
+    public Lecture(String name, String time, int maxCapacity, List<Student> students) {
         this.name = name;
         this.time = time;
         this.maxCapacity = maxCapacity;
-        this.teacher = teacher;
+        this.students = students;
     }
 
-    public int getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -61,7 +69,7 @@ public class Lecture {
     }
 
     public String getTime() {
-        return this.time;
+        return time;
     }
 
     public void setTime(String time) {
@@ -76,11 +84,11 @@ public class Lecture {
         this.maxCapacity = maxCapacity;
     }
 
-    public Teacher getTeacher(){
-        return this.teacher;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setTeacher(Teacher teacher){
-        this.teacher = teacher;
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }

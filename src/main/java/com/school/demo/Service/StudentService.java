@@ -1,5 +1,6 @@
 package com.school.demo.Service;
 
+import com.school.demo.Model.Lecture;
 import com.school.demo.Model.Student;
 import com.school.demo.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +24,5 @@ public class StudentService {
     public List<Student> getStudents(){
         return this.studentRepository.findAll();
     }
+
 }
