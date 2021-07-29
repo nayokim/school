@@ -29,8 +29,8 @@ public class Student {
      */
 
     @JsonIgnore
-    @ManyToMany(mappedBy="students")
-    private List <Lecture> lectures;
+    @ManyToMany(mappedBy="students",fetch = FetchType.LAZY)
+    private List<Lecture> lectures;
 
     public Student() {
 
