@@ -33,7 +33,8 @@ public class LectureService {
         return this.lectureRepository.getById(id);
     }
 
-    //add student to a lecture
+      //add student to a lecture
+
 
 
 }

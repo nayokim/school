@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,9 +28,12 @@ public class Student {
      * classes can have many students
      * create: join table to create student_lecture
      */
-
-    @JsonIgnore
-    @ManyToMany(mappedBy="students",fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+            name="lectures_students",
+            joinColumns = @JoinColumn(name="student_id"),
+            inverseJoinColumns = @JoinColumn(name="lecture_id")
+    )
     private List<Lecture> lectures;
 
     public Student() {
@@ -84,7 +88,7 @@ public class Student {
     }
 
     public List<Lecture> getLectures() {
-        return lectures;
+        return this.lectures;
     }
 
     public void setLectures(List<Lecture> lectures) {

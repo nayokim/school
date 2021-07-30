@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,17 +24,23 @@ public class Lecture {
     @Column
     private int maxCapacity;
 
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToMany
     @JoinTable(
             name="lectures_students",
+            //refer to the lecture_id column in "lectures_students" join table
             joinColumns=@JoinColumn(name="lecture_id"),
+            //refer to the student_id column in "lectures_students" join table
             inverseJoinColumns=@JoinColumn(name="student_id")
     )
     private List<Student> students;
 
 
     public Lecture() {
+    }
+
+    public Lecture(long id) {
+        this.id=id;
     }
 
     public Lecture(long id, String name, String time, int maxCapacity, List<Student> students) {
@@ -85,7 +92,7 @@ public class Lecture {
     }
 
     public List<Student> getStudents() {
-        return students;
+        return this.students;
     }
 
     public void setStudents(List<Student> students) {
