@@ -28,5 +28,18 @@ public class StudentService {
         return this.studentRepository.findAll();
     }
 
+    public Student updateLecture(Student student) throws Exception{
+        Student existingLecture = this.studentRepository
+                .findById(student.getId())
+                .orElseThrow(()-> new Exception("Student with id: " + student.getId() + " does not exist"));
+
+        student.getLectures().forEach(lecture -> {
+            if (!existingLecture.getLectures().contains(lecture)) {
+                existingLecture.getLectures().add(lecture);
+            }
+        });
+
+        return this.studentRepository.save(existingLecture);
+    }
 
 }

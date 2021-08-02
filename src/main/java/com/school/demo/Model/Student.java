@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="students")
@@ -34,13 +36,13 @@ public class Student {
             joinColumns = @JoinColumn(name="student_id"),
             inverseJoinColumns = @JoinColumn(name="lecture_id")
     )
-    private List<Lecture> lectures;
+    private Set<Lecture> lectures = new HashSet<>();
 
     public Student() {
 
     }
 
-    public Student(long id, String firstName, String lastName, int grade, List<Lecture> lectures) {
+    public Student(long id, String firstName, String lastName, int grade, Set<Lecture> lectures) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,7 +50,7 @@ public class Student {
         this.lectures = lectures;
     }
 
-    public Student(String firstName, String lastName, int grade, List<Lecture> lectures) {
+    public Student(String firstName, String lastName, int grade, Set<Lecture> lectures) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.grade = grade;
@@ -87,11 +89,13 @@ public class Student {
         this.grade = grade;
     }
 
-    public List<Lecture> getLectures() {
-        return this.lectures;
+    public Set<Lecture> getLectures() {
+        return lectures;
     }
 
-    public void setLectures(List<Lecture> lectures) {
+    public void setLectures(Set<Lecture> lectures) {
         this.lectures = lectures;
     }
+
+
 }

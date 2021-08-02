@@ -25,4 +25,9 @@ public class StudentController {
     public List<Student> getStudents(){
         return this.studentService.getStudents();
     }
+
+    @PutMapping("/{studentId}/update-student")
+    public Student updateStudent(@PathVariable Long studentId, @RequestBody Student student) throws Exception {
+        return this.studentService.updateLecture(student);
+    }
 }

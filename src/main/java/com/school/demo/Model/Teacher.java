@@ -1,5 +1,7 @@
 package com.school.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,21 +21,27 @@ public class Teacher {
     @Column
     private String title;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "teacher")
+    private List<Lecture> lectures;
+
 
     public Teacher() {
     }
 
-    public Teacher(long id, String firstName, String lastName, String title, String subjectTaught, int level) {
+    public Teacher(long id, String firstName, String lastName, String title, List<Lecture> lectures) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
+        this.lectures = lectures;
     }
 
-    public Teacher(String firstName, String lastName, String title) {
+    public Teacher(String firstName, String lastName, String title, List<Lecture> lectures) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
+        this.lectures = lectures;
     }
 
     public long getId() {
@@ -68,5 +76,12 @@ public class Teacher {
         this.title = title;
     }
 
+    public List<Lecture> getLectures() {
+        return lectures;
+    }
+
+    public void setLectures(List<Lecture> lectures) {
+        this.lectures = lectures;
+    }
 }
 
