@@ -1,6 +1,8 @@
 package com.school.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,29 +20,24 @@ public class Teacher {
     @Column
     private String lastName;
 
-    @Column
-    private String title;
-
-    @JsonIgnore
     @OneToMany(mappedBy = "teacher")
+    @JsonBackReference
     private List<Lecture> lectures;
 
 
     public Teacher() {
     }
 
-    public Teacher(long id, String firstName, String lastName, String title, List<Lecture> lectures) {
+    public Teacher(long id, String firstName, String lastName, List<Lecture> lectures) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.title = title;
         this.lectures = lectures;
     }
 
-    public Teacher(String firstName, String lastName, String title, List<Lecture> lectures) {
+    public Teacher(String firstName, String lastName, List<Lecture> lectures) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.title = title;
         this.lectures = lectures;
     }
 
@@ -66,14 +63,6 @@ public class Teacher {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public List<Lecture> getLectures() {
