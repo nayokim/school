@@ -32,6 +32,7 @@ public class StudentService {
                 .findById(student.getId())
                 .orElseThrow(()-> new Exception("Student with id: " + student.getId() + " does not exist"));
 
+        //loop through all the lectures that the student is enrolled in since the relationship between student and lectures is many to many.
         student.getLectures().forEach(lecture -> {
             if (!existingLecture.getLectures().contains(lecture)) {
                 existingLecture.getLectures().add(lecture);
