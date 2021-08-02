@@ -26,8 +26,15 @@ public class StudentController {
         return this.studentService.getStudents();
     }
 
-    @PutMapping("/{studentId}/update-student")
-    public Student updateStudent(@PathVariable Long studentId, @RequestBody Student student) throws Exception {
+    @PutMapping("/{studentId}/update-lecture")
+    public Student updateLecture(@PathVariable Long studentId, @RequestBody Student student) throws Exception {
         return this.studentService.updateLecture(student);
+    }
+
+
+    @DeleteMapping("/{studentId}/delete-student")
+    public String deleteStudent(@PathVariable Long studentId, @RequestBody Student student) throws Exception {
+        this.studentService.deleteStudent(student);
+        return "Student has been removed from the system";
     }
 }

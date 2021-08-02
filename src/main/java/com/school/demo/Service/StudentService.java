@@ -38,8 +38,14 @@ public class StudentService {
                 existingLecture.getLectures().add(lecture);
             }
         });
-
         return this.studentRepository.save(existingLecture);
     }
 
+    public void deleteStudent(Student student) throws Exception{
+        Student studentToDelete = studentRepository
+                .findById(student.getId())
+                .orElseThrow(() -> new Exception ("Student with id " + student.getId() + " does not exist"));
+
+        this.studentRepository.delete(studentToDelete);
+    }
 }
