@@ -1,12 +1,9 @@
 package com.school.demo.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,8 +27,8 @@ public class Lecture {
     @JoinColumn (name="teacher_id")
     private Teacher teacher;
 
-    @JsonIgnore
     @ManyToMany(fetch=FetchType.EAGER)
+    @JsonIgnore
     @JoinTable(
             name="lectures_students",
             //refer to the lecture_id column in "lectures_students" join table

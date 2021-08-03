@@ -1,12 +1,10 @@
 package com.school.demo.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -55,6 +53,12 @@ public class Student {
         this.lastName = lastName;
         this.grade = grade;
         this.lectures = lectures;
+    }
+
+    public Student(String firstName, String lastName, int grade) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.grade = grade;
     }
 
     public long getId() {
