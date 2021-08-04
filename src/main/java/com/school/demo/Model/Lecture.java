@@ -12,7 +12,7 @@ public class Lecture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private String name;
@@ -42,19 +42,11 @@ public class Lecture {
     public Lecture() {
     }
 
-    public Lecture(long id) {
-        this.id = id;
+    public Lecture(long id){
+        this.id=id;
     }
 
-    public Lecture(String name, String time, int maxCapacity, Teacher teacher, Set<Student> students) {
-        this.name = name;
-        this.time = time;
-        this.maxCapacity = maxCapacity;
-        this.teacher = teacher;
-        this.students = students;
-    }
-
-    public Lecture(long id, String name, String time, int maxCapacity, Teacher teacher, Set<Student> students) {
+    public Lecture(Long id, String name, String time, int maxCapacity, Teacher teacher, Set<Student> students) {
         this.id = id;
         this.name = name;
         this.time = time;
@@ -63,11 +55,11 @@ public class Lecture {
         this.students = students;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

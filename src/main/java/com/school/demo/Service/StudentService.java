@@ -1,7 +1,6 @@
 package com.school.demo.Service;
 
 import com.school.demo.Model.Student;
-import com.school.demo.repo.LectureRepository;
 import com.school.demo.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,13 +9,11 @@ import java.util.List;
 
 @Service
 public class StudentService {
-    private final StudentRepository studentRepository;
-    private final LectureRepository lectureRepository;
-
     @Autowired
-    public StudentService(StudentRepository studentRepository, LectureRepository lectureRepository){
+    private final StudentRepository studentRepository;
+
+    public StudentService(StudentRepository studentRepository){
         this.studentRepository = studentRepository;
-        this.lectureRepository = lectureRepository;
     }
 
     public Student createStudent(Student student){
@@ -31,7 +28,6 @@ public class StudentService {
         Student existingLecture = this.studentRepository
                 .findById(student.getId())
                 .orElseThrow(()-> new Exception("Student with id: " + student.getId() + " does not exist"));
-
         //loop through all the lectures that the student is enrolled in since the relationship between student and lectures is many to many.
         student.getLectures().forEach(lecture -> {
             if (!existingLecture.getLectures().contains(lecture)) {
@@ -45,7 +41,6 @@ public class StudentService {
         Student studentToDelete = studentRepository
                 .findById(student.getId())
                 .orElseThrow(() -> new Exception ("Student with id " + student.getId() + " does not exist"));
-
         this.studentRepository.delete(studentToDelete);
     }
 }

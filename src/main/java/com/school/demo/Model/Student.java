@@ -12,7 +12,7 @@ import java.util.Set;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column
     private String firstName;
@@ -40,7 +40,7 @@ public class Student {
 
     }
 
-    public Student(long id, String firstName, String lastName, int grade, Set<Lecture> lectures) {
+    public Student(Long id, String firstName, String lastName, int grade, Set<Lecture> lectures) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,24 +48,11 @@ public class Student {
         this.lectures = lectures;
     }
 
-    public Student(String firstName, String lastName, int grade, Set<Lecture> lectures) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.grade = grade;
-        this.lectures = lectures;
-    }
-
-    public Student(String firstName, String lastName, int grade) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.grade = grade;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
