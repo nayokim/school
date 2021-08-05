@@ -1,12 +1,12 @@
 package com.school.demo.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import io.swagger.annotations.Api;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Api
 @Entity
 @Table(name="students")
 public class Student {
@@ -28,7 +28,7 @@ public class Student {
      * classes can have many students
      * create: join table to create student_lecture
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name="lectures_students",
             joinColumns = @JoinColumn(name="student_id"),

@@ -2,6 +2,7 @@ package com.school.demo.Controller;
 
 import com.school.demo.Model.Student;
 import com.school.demo.Service.StudentService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
