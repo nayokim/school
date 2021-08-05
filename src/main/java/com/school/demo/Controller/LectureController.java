@@ -2,10 +2,12 @@ package com.school.demo.Controller;
 
 import com.school.demo.Model.Lecture;
 import com.school.demo.Service.LectureService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api
 @RestController
 @RequestMapping(path="/lecture")
 public class LectureController {

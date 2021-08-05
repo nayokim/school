@@ -25,7 +25,9 @@ public class SwaggerConfig{
     public Docket postsApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select().apis(RequestHandlerSelectors.any())
-                .paths(regex("(/api/v1.*)|(/student.*)")).build();
+                //.paths(regex("(/api/v1.*)|(/student.*)"))
+                .paths(PathSelectors.any())
+                .build();
     }
 
 //    private ApiInfo metaData() {
