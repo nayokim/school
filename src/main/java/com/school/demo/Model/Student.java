@@ -28,7 +28,7 @@ public class Student {
      * classes can have many students
      * create: join table to create student_lecture
      */
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(
             name="lectures_students",
             joinColumns = @JoinColumn(name="student_id"),

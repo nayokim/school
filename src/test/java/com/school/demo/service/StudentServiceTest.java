@@ -1,6 +1,8 @@
 package com.school.demo.service;
 
+import com.school.demo.Model.Lecture;
 import com.school.demo.Model.Student;
+import com.school.demo.Model.Teacher;
 import com.school.demo.Service.StudentService;
 import com.school.demo.repo.StudentRepository;
 
@@ -9,7 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,11 +46,14 @@ public class StudentServiceTest {
 
     @Test
     public void getStudentTest() {
+        Lecture lecture = new Lecture(null, "Biology", "10:00", 10, null, null);
+        Set<Lecture> lectures = new HashSet<>();
+        lectures.add(lecture);
 
         List<Student> expected = Arrays.asList(
-                new Student(null, "Nayoung", "kim", 1, null),
-                new Student(null, "Inky", "Cat", 1, null),
-                new Student(null, "Chester", "Cat", 1, null)
+                new Student(null, "Nayoung", "kim", 1, lectures),
+                new Student(null, "Inky", "Cat", 1, lectures),
+                new Student(null, "Chester", "Cat", 1, lectures)
         );
         Mockito.when(studentRepository.findAll()).thenReturn(expected);
 

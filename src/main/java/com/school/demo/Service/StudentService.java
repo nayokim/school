@@ -1,11 +1,14 @@
 package com.school.demo.Service;
 
 import com.school.demo.Model.Student;
+//import com.school.demo.exceptions.StudentNotFoundException;
+import com.school.demo.exceptions.StudentNotFoundException;
 import com.school.demo.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -22,6 +25,16 @@ public class StudentService {
 
     public List<Student> getStudents(){
         return this.studentRepository.findAll();
+    }
+
+    public Student getById(long id){
+        Optional<Student> student = studentRepository.findById(id);
+
+        if (!student.isPresent()){
+            throw new StudentNotFoundException("there is no student with that id");
+        }
+
+        return student.get();
     }
 
     public Student updateLecture(Student student) throws Exception{

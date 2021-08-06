@@ -3,6 +3,7 @@ package com.school.demo.Controller;
 import com.school.demo.Model.Student;
 import com.school.demo.Service.StudentService;
 import io.swagger.annotations.Api;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,11 @@ public class StudentController {
     @GetMapping
     public List<Student> getStudents(){
         return this.studentService.getStudents();
+    }
+
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable long id){
+        return this.studentService.getById(id);
     }
 
     @PutMapping("/{studentId}/update-lecture")

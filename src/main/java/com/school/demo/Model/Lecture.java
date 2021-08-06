@@ -27,7 +27,7 @@ public class Lecture {
     @JoinColumn (name="teacher_id")
     private Teacher teacher;
 
-    @ManyToMany(fetch =FetchType.EAGER)
+    @ManyToMany(fetch =FetchType.EAGER, cascade= CascadeType.MERGE)
     @JsonIgnore
     @JoinTable(
             name="lectures_students",
