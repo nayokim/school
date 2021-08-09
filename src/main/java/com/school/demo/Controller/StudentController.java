@@ -3,11 +3,11 @@ package com.school.demo.Controller;
 import com.school.demo.Model.Student;
 import com.school.demo.Service.StudentService;
 import io.swagger.annotations.Api;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api
 @RestController
 @RequestMapping(path="/student")
 public class StudentController {
@@ -40,8 +40,8 @@ public class StudentController {
 
 
     @DeleteMapping("/{studentId}/delete-student")
-    public String deleteStudent(@PathVariable Long studentId, @RequestBody Student student) throws Exception {
-        this.studentService.deleteStudent(student);
+    public String deleteStudent(@PathVariable long studentId, @RequestBody Student student) throws Exception {
+        this.studentService.deleteStudent(studentId);
         return "Student has been removed from the system";
     }
 }

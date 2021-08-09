@@ -8,6 +8,7 @@ import com.school.demo.repo.StudentRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.Arrays;
@@ -28,13 +29,18 @@ public class StudentServiceTest {
     public void setUp() {
         studentRepository = Mockito.mock(StudentRepository.class);
         studentService = new StudentService(studentRepository);
+
     }
 
     @Test
     public void createStudentTest() {
-        Student input = new Student(null, "Nayoung", "Kim", 10, null);
-        Student expected = new Student(1L, "Nayoung", "Kim", 10, null);
 
+        Lecture lecture = new Lecture(null, "Biology", "10:00", 10, null, null);
+        Set<Lecture> lectures = new HashSet<>();
+        lectures.add(lecture);
+
+        Student input = new Student(null, "Nayoung", "Kim", 10, lectures);
+        Student expected = new Student(1L, "Nayoung", "Kim", 10, lectures);
 
         Mockito.when(studentRepository.save(input)).thenReturn(expected);
 
@@ -49,7 +55,6 @@ public class StudentServiceTest {
         Lecture lecture = new Lecture(null, "Biology", "10:00", 10, null, null);
         Set<Lecture> lectures = new HashSet<>();
         lectures.add(lecture);
-
         List<Student> expected = Arrays.asList(
                 new Student(null, "Nayoung", "kim", 1, lectures),
                 new Student(null, "Inky", "Cat", 1, lectures),
@@ -61,5 +66,12 @@ public class StudentServiceTest {
 
         Mockito.verify(studentRepository).findAll();
         assertEquals(expected, response);
+    }
+
+    @Test
+    public void deleteStudentTest(){
+        long id = 1L;
+        studentService.deleteStudent(id);
+        Mockito.verify(studentRepository).deleteById(id);
     }
 }
