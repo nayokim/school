@@ -35,7 +35,7 @@ public class StudentController {
 
     @PutMapping("/{studentId}/update-lecture")
     public Student updateLecture(@PathVariable Long studentId, @RequestBody Student student) throws Exception {
-        return this.studentService.updateLecture(student);
+        return this.studentService.updateStudentLecture(student);
     }
 
 
